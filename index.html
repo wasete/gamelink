@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#10152c">
+  <title>GameLink | جامعه گیمری</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="cursor-orb" id="cursorOrb" aria-hidden="true"></div>
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="brand"><div class="brand-mark">🎮</div><div><b>GameLink</b><small>دنیای دوستای گیمری</small></div></div>
+    <div class="user-card"><div class="avatar" id="myAvatar">G</div><div class="user-meta"><b id="userLabel">مهمان</b><small id="userStatus">برای چت وارد شو</small></div><button id="authBtn" class="tiny-btn">ورود</button></div>
+    <nav>
+      <button class="nav-item active" data-view="public"><span>💬</span> چت عمومی</button>
+      <button class="nav-item" data-view="market"><span>🛒</span> معاوضه اکانت</button>
+      <button class="nav-item" data-view="inbox"><span>✉️</span> پیوی‌ها</button>
+      <button class="nav-item" data-view="trades"><span>🔐</span> اتاق‌های معامله</button>
+      <button class="nav-item" data-view="profile"><span>👤</span> پروفایل</button>
+      <button class="nav-item" data-view="admin" id="adminNav" hidden><span>🛡️</span> پنل مدیریت</button>
+    </nav>
+    <div class="sidebar-promo"><div class="promo-icon">⚡</div><b>بازی، رفاقت، معامله</b><p>با خیال راحت‌تر معامله کن؛ اطلاعات ورود اکانتت رو داخل چت عمومی نفرست.</p></div>
+    <button class="theme-switch" id="themeBtn">🌙 تغییر تم</button>
+    <div class="sidebar-footer">ساخته‌شده برای گیمرها · <span id="connectionState">حالت نمایشی</span></div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div><div class="eyebrow">جامعه جهانی گیمرها</div><h1 id="pageTitle">چت عمومی</h1></div>
+      <div class="top-actions"><span class="online-pill"><i></i><span id="onlineCount">همه اعضا</span></span><button class="icon-btn" id="themeBtnTop" title="تغییر تم">◐</button><div class="mini-avatar">🎮</div></div>
+    </header>
+
+    <section class="view active" id="view-public">
+      <div class="section-intro"><div><h2>🎉 دورهمی گیمری</h2><p>اینجا همه اعضای واردشده می‌تونن با هم گپ بزنن.</p></div><span class="tag">چت عمومی</span></div>
+      <div class="chat-layout">
+        <div class="chat-panel">
+          <div class="chat-banner"><div class="banner-orb">💬</div><div><b>گپ آزاد GameLink</b><p>باحال باش، محترمانه حرف بزن و از بازی‌ها بگو!</p></div><span class="live-label"><i></i> زنده</span></div>
+          <div class="messages" id="publicMessages" aria-live="polite">
+            <div class="welcome-card"><div class="welcome-emoji">👋</div><h3>به جمعمون خوش اومدی!</h3><p>برای ارسال پیام وارد حساب شو. پیام‌های این بخش برای تمام اعضای چت عمومی قابل مشاهده‌اند.</p></div>
+          </div>
+          <form class="composer" id="publicForm"><button type="button" class="emoji-btn" id="emojiBtn" title="افزودن ایموجی">☺</button><input id="publicInput" maxlength="1000" placeholder="پیامت رو بنویس..." autocomplete="off"><button class="send-btn" type="submit" aria-label="ارسال پیام">➤</button></form><div class="composer-note">برای عکس و پست تصویری، بخش «کانال من» به نسخه بعدی اضافه می‌شود؛ فعلاً از لینک تصویر عمومی استفاده کن.</div>
+          <div class="composer-note">لطفاً اطلاعات ورود، رمز و کدهای بازی را عمومی منتشر نکن.</div>
+        </div>
+        <aside class="right-rail">
+          <div class="rail-card"><div class="rail-title"><b>قوانین جمع</b><span>✦</span></div><ul class="rules"><li>🤝 احترام به همه</li><li>🚫 بدون اسپم و کلاهبرداری</li><li>🔒 اطلاعات حساس ممنوع</li><li>🎮 بحث درباره بازی‌ها آزاد</li></ul></div>
+          <div class="rail-card gradient-card"><div class="sparkle">✦</div><h3>دنبال معامله‌ای؟</h3><p>آگهی‌ها رو ببین یا با مدیر برای ساخت اتاق سه‌نفره هماهنگ کن.</p><button class="primary-btn" data-goto="market">رفتن به بازار</button></div>
+          <div class="rail-card"><div class="rail-title"><b>راهنمای چت</b><span>💡</span></div><p class="muted">پیام‌ها پس از اتصال به سرویس آنلاین بین اعضا همگام می‌شن. نسخه اولیه تا قبل از تنظیم Supabase در حالت نمایشی کار می‌کنه.</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="view" id="view-market">
+      <div class="section-intro"><div><h2>🔁 بازار معاوضه اکانت‌های بازی</h2><p>اکانت کاملت رو معرفی کن و بگو در عوضش چه اکانتی می‌خوای.</p></div><button class="primary-btn" id="newListingBtn">＋ ثبت آگهی</button></div>
+      <div class="notice">⚠️ این بخش برای معاوضه اکانت است، نه پرداخت پول. رمز، ایمیل ورود و کد بازیابی را در آگهی یا چت ارسال نکن. قوانین بازی موردنظر را هم بررسی کن.</div>
+      <div class="market-grid" id="marketGrid">
+        <article class="listing-card"><div class="listing-cover cover-pink">🎯</div><div class="listing-body"><span class="tag">Fortnite</span><h3>نمونه آگهی نمایشی</h3><p>این آگهی نمونه است؛ پس از اتصال سرویس می‌توان آگهی‌های واقعی ثبت کرد.</p><div class="listing-foot"><b>قیمت توافقی</b><button class="outline-btn" data-goto="trades">درخواست معامله</button></div></div></article>
+        <article class="listing-card"><div class="listing-cover cover-blue">🚗</div><div class="listing-body"><span class="tag">GTA V</span><h3>اکانت بازی</h3><p>جزئیات معامله را در اتاق خصوصی با حضور واسطه بررسی کنید.</p><div class="listing-foot"><b>قیمت توافقی</b><button class="outline-btn" data-goto="trades">درخواست معامله</button></div></div></article>
+        <article class="listing-card"><div class="listing-cover cover-purple">⚽</div><div class="listing-body"><span class="tag">FC</span><h3>پیشنهاد خرید و فروش</h3><p>از ارسال اطلاعات ورود یا پرداخت خارج از روش مطمئن خودداری کن.</p><div class="listing-foot"><b>قیمت توافقی</b><button class="outline-btn" data-goto="trades">درخواست معامله</button></div></div></article>
+      </div>
+    </section>
+
+    <section class="view" id="view-inbox">
+      <div class="section-intro"><div><h2>✉️ پیام خصوصی</h2><p>با نام کاربری عضو دیگر گفت‌وگوی خصوصی را باز کن.</p></div><span class="tag">پیوی</span></div>
+      <div class="trade-grid"><div class="rail-card"><h3>شروع گفت‌وگو</h3><form id="dmOpenForm" class="stack-form"><label for="dmUsername">نام کاربری طرف مقابل</label><input id="dmUsername" placeholder="مثلاً gamer123" required><button class="primary-btn" type="submit">باز کردن پیوی</button></form><div id="dmResult" class="form-result"></div><p class="muted">برای پیدا کردن نام کاربری از خود شخص بپرس. پیام خصوصی فقط بعد از تنظیم Supabase فعال می‌شود.</p></div>
+      <div class="chat-panel"><div class="chat-banner"><div class="banner-orb">✉️</div><div><b id="dmTitle">پیام خصوصی</b><p id="dmSubtitle">یک نام کاربری وارد کن تا گفتگو باز شود.</p></div></div><div class="messages" id="dmMessages"><div class="welcome-card"><div class="welcome-emoji">💌</div><h3>گفت‌وگوی خصوصی</h3><p>پیام‌های این بخش فقط برای دو طرف گفتگو هستند.</p></div></div><form class="composer" id="dmForm"><input id="dmInput" placeholder="پیام خصوصی..." maxlength="1000" disabled><button class="send-btn" type="submit" disabled>➤</button></form></div></div>
+    </section>
+
+    <section class="view" id="view-trades">
+      <div class="section-intro"><div><h2>🔐 اتاق‌های معامله سه‌نفره</h2><p>هر اتاق مخصوص یک معامله است: تو، خریدار و فروشنده.</p></div><span class="tag">دعوت با کد</span></div>
+      <div class="trade-grid">
+        <div class="rail-card"><div class="big-emoji">🗝️</div><h3>ورود به اتاق معامله</h3><p class="muted">کدی را که مدیر برایت فرستاده وارد کن.</p><form id="joinTradeForm" class="stack-form"><label for="tradeCode">کد اتاق</label><input id="tradeCode" placeholder="مثلاً GL-7F3K92" required><button class="primary-btn" type="submit">ورود به اتاق</button></form><div id="joinTradeResult" class="form-result"></div></div>
+        <div class="rail-card"><div class="big-emoji">👑</div><h3>مدیریت معامله</h3><p class="muted">ساخت اتاق، افزودن دو طرف معامله و پایان دادن به اتاق از پنل مدیر انجام می‌شود. فقط کد دعوت را با افراد موردنظر به اشتراک بگذار.</p><button class="outline-btn" data-goto="admin">رفتن به پنل مدیریت</button></div>
+      </div>
+      <div class="chat-panel trade-chat"><div class="chat-banner"><div class="banner-orb">🔐</div><div><b id="tradeRoomTitle">هنوز اتاقی انتخاب نشده</b><p id="tradeRoomSubtitle">پس از ورود به کد معتبر، گفت‌وگو اینجا نمایش داده می‌شود.</p></div></div><div class="messages" id="tradeMessages"><div class="welcome-card"><div class="welcome-emoji">🤝</div><h3>معامله شفاف‌تر</h3><p>تمام توافق‌ها را روشن بنویسید. این نسخه نمونه، پرداخت امانی واقعی انجام نمی‌دهد.</p></div></div><form class="composer" id="tradeForm"><input id="tradeInput" placeholder="پیام معامله..." autocomplete="off" disabled><button class="send-btn" type="submit" disabled>➤</button></form></div>
+    </section>
+
+    <section class="view" id="view-profile">
+      <div class="section-intro"><div><h2>👤 پروفایل من</h2><p>اطلاعات نمایشی حساب و تنظیمات پایه.</p></div></div>
+      <div class="profile-card"><div class="profile-avatar" id="profileAvatar">G</div><h2 id="profileName">مهمان GameLink</h2><p class="muted" id="profileEmail">برای استفاده از چت وارد شو.</p><div class="profile-stats"><div><b>🌍</b><span>جامعه جهانی</span></div><div><b>🎮</b><span>گیمر</span></div><div><b>💬</b><span>گپ دوستانه</span></div></div><button class="primary-btn" id="profileAuthBtn">ورود / ثبت‌نام</button></div>
+    </section>
+
+    <section class="view" id="view-admin">
+      <div class="section-intro"><div><h2>🛡️ پنل مدیریت</h2><p>دسترسی‌های مدیریتی فقط پس از تأیید نقش امن در دیتابیس فعال می‌شوند.</p></div><span class="tag admin-tag">مدیر و دستیار</span></div>
+      <div class="notice">این بخش تا زمان تنظیم Supabase و تعیین امن نقش مدیر، فقط نمایشی است. هرگز نقش مدیر را با یک متغیر جاوااسکریپت یا دکمه مخفی‌شده تأمین نکن.</div>
+      <div class="admin-grid">
+        <div class="rail-card"><div class="big-emoji">➕</div><h3>ساخت اتاق معامله</h3><form id="createTradeForm" class="stack-form"><label>عنوان معامله</label><input id="tradeTitle" placeholder="مثلاً معامله اکانت GTA V" required><label>نام خریدار</label><input id="buyerName" placeholder="نام کاربری خریدار" required><label>نام فروشنده</label><input id="sellerName" placeholder="نام کاربری فروشنده" required><button class="primary-btn" type="submit">ساخت کد اتاق</button></form><div id="createdTradeResult" class="form-result"></div></div>
+        <div class="rail-card"><div class="big-emoji">👥</div><h3>نقش‌ها و اعضا</h3><p class="muted">مدیر اصلی می‌تواند دستیار انتخاب کند. مدیر و دستیار می‌توانند گزارش‌ها را بررسی کنند و طبق سطح دسترسی، کاربران را بن کنند.</p><div class="role-row"><span>مدیر اصلی</span><b>دسترسی کامل</b></div><div class="role-row"><span>دستیار</span><b>مدیریت محدود</b></div><div class="role-row"><span>عضو</span><b>چت و آگهی</b></div></div>
+      </div>
+    </section>
+
+    <footer class="main-footer"><span>🎮 GameLink</span><span>بازی کن · دوست پیدا کن · مسئولانه معامله کن</span><span>GitHub Pages + Supabase</span></footer>
+  </main>
+</div>
+
+<div class="modal-backdrop" id="authModal" hidden>
+  <div class="modal"><button class="modal-close" id="closeAuth">×</button><div class="modal-icon">🎮</div><h2>ورود به GameLink</h2><p class="muted">برای چت عمومی و ثبت آگهی وارد حساب شو.</p><form id="authForm" class="stack-form"><label for="authEmail">ایمیل</label><input id="authEmail" type="email" placeholder="you@example.com" required><label for="authPassword">رمز عبور</label><input id="authPassword" type="password" minlength="6" placeholder="حداقل ۶ کاراکتر" required><div class="modal-actions"><button class="primary-btn" type="submit" id="signInBtn">ورود</button><button class="outline-btn" type="button" id="signUpBtn">ساخت حساب</button></div></form><div class="form-result" id="authResult"></div><small class="muted">با ساخت حساب، قوانین جامعه را می‌پذیری.</small></div>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="config.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
